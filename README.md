@@ -46,10 +46,10 @@ biomarkers, specifically those used in the MELD score calculations.
 calulcate the MELD-na score for a patient *calcMELDthree* Will calculate
 the MELD-3.0 score for a patient *createMELDdf* Will create a dataframe
 from the cleaned up data to contain longitudinal MELD scores values at
-each timepoint *visualizeMELD* Creates 4 graphs. Three visuals of the
-trajectory of all three searate MELD scores with the biomarker most
-impactful of their longirtudinal changes, as well as a fourth visual
-with all 3 MELD score evolutions together.
+each timepoint *visualizeMELD* Creates a visual with all 3 MELD score
+evolutions together.
+
+Package visual result: ![](./inst/MELD_scores.png)
 
 ## Contributions
 

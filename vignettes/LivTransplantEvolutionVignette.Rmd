@@ -14,6 +14,56 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{r setup}
+```{r, eval=FALSE}
 library(LivTransplantEvolution)
 ```
+
+## Introduction
+
+`LivTransplantEvolution` is an R package that calculates and visualizes MELD, 
+MELDna and MELD3.0 liver transplantation relevant risk scores
+The package was developed on `R version 4.3.1 (2023-06-16)` on a Mac platform
+To download **LivTransplantEvolution**, use the following commands:
+
+```{r, eval=FALSE}
+require("devtools")
+devtools::install_github("Mouaid-Alim/LivTransplantEvolution", build_vignettes = TRUE)
+library("LivTransplantEvolution")
+```
+To list all sample functions available in the package:
+```{r, eval=FALSE}
+ls("package:LivTransplantEvolution")
+```
+
+### Minimal requirements
+You will need to have dataset with 
+
+## Application
+```{r, eval=FALSE}
+library("LivTransplantEvolution")
+?LivTransplantEvolution::calcMELDna
+```
+
+### Refernces
+
+Bibliography
+
+1.
+Potosek, J., Curry, M., Buss, M. & Chittenden, E. Integration of palliative care in end-stage liver disease and liver transplantation. J. Palliat. Med. 17, 1271–1277 (2014).
+2.
+Summary statistics on organ transplants, wait-lists and donors. Cihi.ca https://www.cihi.ca/en/summary-statistics-on-organ-transplants-wait-lists-and-donors.
+3.
+Kwong, A. J. et al. OPTN/SRTR 2019 annual data report: Liver. Am. J. Transplant 21 Suppl 2, 208–315 (2021).
+4.
+Kamath, P. et al. A model to predict survival in patients with end-stage liver disease. Gastroenterology 120, A76–A77 (2001).
+5.
+Biggins, S. W. et al. Serum sodium predicts mortality in patients listed for liver transplantation. Hepatology 41, 32–39 (2005).
+6.
+Kim, W. R. et al. MELD 3.0: The model for end-Stage Liver Disease updated for the modern era. Gastroenterology 161, 1887-1895.e4 (2021).
+7.
+Liver transplant risk stratification. R-project.org https://cran.r-project.org/web/packages/transplantr/vignettes/liver_recipient_scoring.html.
+8.
+UCI Machine Learning. Indian Liver Patient Records. (2017).
+
+
+
