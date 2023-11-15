@@ -63,6 +63,26 @@ Package visual result:
 This Package is Created by Mouaid Alim
 
 ## Refernces
+Bibliography
+
+1.
+Potosek, J., Curry, M., Buss, M. & Chittenden, E. Integration of palliative care in end-stage liver disease and liver transplantation. J. Palliat. Med. 17, 1271–1277 (2014).
+2.
+Summary statistics on organ transplants, wait-lists and donors. Cihi.ca https://www.cihi.ca/en/summary-statistics-on-organ-transplants-wait-lists-and-donors.
+3.
+Kwong, A. J. et al. OPTN/SRTR 2019 annual data report: Liver. Am. J. Transplant 21 Suppl 2, 208–315 (2021).
+4.
+Kamath, P. et al. A model to predict survival in patients with end-stage liver disease. Gastroenterology 120, A76–A77 (2001).
+5.
+Biggins, S. W. et al. Serum sodium predicts mortality in patients listed for liver transplantation. Hepatology 41, 32–39 (2005).
+6.
+Kim, W. R. et al. MELD 3.0: The model for end-Stage Liver Disease updated for the modern era. Gastroenterology 161, 1887-1895.e4 (2021).
+7.
+Liver transplant risk stratification. R-project.org https://cran.r-project.org/web/packages/transplantr/vignettes/liver_recipient_scoring.html.
+8.
+UCI Machine Learning. Indian Liver Patient Records. (2017).
+
+
 
 ## Acknowledgements
 
