@@ -4,19 +4,19 @@
 \alias{calcMELDThree}
 \title{Calculate MELD-3.0 score}
 \usage{
-calcMELDThree(sex, creatinine, bilirubin, inr, sodium, albumin)
+calcMELDThree(sex, creatinine, inr, bilirubin, sodium, albumin)
 }
 \arguments{
 \item{creatinine}{a serum biomarker that reflects the kidney function. Unit:
 mg/dl}
 
+\item{inr}{International Normalized Ratio is a blood clotting test that is a
+measure how quickly your blood clots and basically how thin your blood is.}
+
 \item{bilirubin}{a biomarker that measures the ability of the liver to
 process this byproduct from the breakdown of old red blood cells.  Elevated
 levels in the blood (hyperbilirubinemia) indicate poor liver function
 unit: mg/dl}
-
-\item{inr}{International Normalized Ratio is a blood clotting test that is a
-measure how quickly your blood clots and basically how thin your blood is.}
 
 \item{sodium}{serum sodium level. Unit: mEq/L}
 
