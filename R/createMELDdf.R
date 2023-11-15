@@ -133,8 +133,7 @@ calcMELDThree <- function(sex, creatinine, inr, bilirubin, sodium, albumin){
 #' MELD scores by date
 #' @export
 #' @import dplyr
-#' @import purr
-#' @import LivTransplantEvolution
+#' @import purrr
 #'
 #' @examples
 #' #Example 1
