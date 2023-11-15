@@ -55,6 +55,9 @@ calcMELD <- function(dialyisTwoTimeWeek, creatinine, bilirubin, inr){
   if (meldScore <  1) {
     meldScore = 1
   }
+  if (meldScore > 40) {
+    meldScore = 40
+  }
 
   return(meldScore)
 }

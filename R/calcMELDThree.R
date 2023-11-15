@@ -29,7 +29,7 @@
 #'
 #' @references
 #' Kim WR, Mannalithara A, Heimbach JK, Kamath PS, Asrani SK, Biggins SW,
-#' Wood NL, Gentry SE, Kwong AJ. MELD 3.0: The Model for End-Stage Liver Disease
+#'  Wood NL, Gentry SE, Kwong AJ. MELD 3.0: The Model for End-Stage Liver Disease
 #'  Updated for the Modern Era. Gastroenterology. 2021 Dec;161(6):1887-1895.e4.
 #'  doi: 10.1053/j.gastro.2021.08.050. Epub 2021 Sep 3. PMID: 34481845;
 #'  PMCID: PMC8608337.
@@ -39,11 +39,12 @@
 #'   end-stage liver disease. Hepatology. 2001 Feb;33(2):464-70.
 #'   doi: 10.1053/jhep.2001.22172. PMID: 11172350.
 #'
-calcMELDThree <- function(sex, creatinine, bilirubin, inr, sodium, albumin){
+calcMELDThree <- function(sex, creatinine, inr, bilirubin, sodium, albumin){
 
   if (creatinine > 3) {
     creatinine = 3
-  } else if (creatinine < 1) {
+  }
+  if (creatinine < 1) {
     creatinine = 1
   }
   if (bilirubin < 1) {
@@ -54,12 +55,14 @@ calcMELDThree <- function(sex, creatinine, bilirubin, inr, sodium, albumin){
   }
   if (sodium < 125) {
     sodium = 125
-  } else if (sodium > 137) {
+  }
+  if (sodium > 137) {
     sodium = 137
   }
   if (albumin < 1.5) {
     albumin = 1.5
-  } else if (albumin > 3.5) {
+  }
+  if (albumin > 3.5) {
     albumin = 3.5
   }
 
