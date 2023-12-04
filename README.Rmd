@@ -20,10 +20,15 @@ knitr::opts_chunk$set(
 
 ## Description
 
-The goal of `LivTransplantEvolution` is to an relevant biomarkers, 
-  specifically those used in the MELD, MELD-na and MELD-3.0 risk score 
-  calculations. It visualizes trajectories of those risk scores and
-  extracts the biomarkers most impactful of each longitudinal change. 
+End-Stage Liver Disease (ESLD) is a terminal diagnosis that encompasses advanced liver disease, liver failure, and decompensated cirrhosis. Liver transplantation, either from living or deceased donors, remains the only life saving therapeutic intervention available. Transplanted organs can be Living Donor Liver transplantation (LDLT) or Deceased Donor Liver transplantation (DDLT). DDLT is the major form of transplantation in Canada accounting for 78% of Liver Transplants (LT) in 2021. Various allocaiton systems exist but the main one is the Model for End-stage Liver Disease (MELD) 
+score, a linear model that uses the log of the Serum Creatinine, International Normalized Ratio (INR) and Bilirubin. It is the the adopted method of severity calculation in the united states and Canada. MELD-na is an augmentation to the MELD score calculation that takes into account Serum Sodium and MELD 3.0 is an improvement on the MELD score that takes into account Albumin among other factors. 
+
+The Scientific Registry of Transplant Recipients (SRTR) database is the database 
+containing information largely collected by the Organ Procurement and Transplantation Network (OPTN) in the United States. This very Large database contains the information for all patients who have been added to a transplant wait list in the United States.
+Moreover the patient data within the SRTR database is the base for a great deal of the transplantation research going on in North America.
+
+The goal of `LivTransplantEvolution` is to be an anlysis tool for clinicians using the SRTR database and conducing research on Liver transplantation who might not have the greatest familiarity with technical analysis and computation. What it will do is analyze the Liver transplantation relevant biomarkers, specifically those used in the MELD, MELD-na and MELD-3.0 risk score calculations (Creatinine, Bilirubin INR, Albumin & Sodium). It will visualize the trajectories of those risk scores, compare them and
+  extract the biomarkers most impactful of each longitudinal change. 
   
   - R Development Version: 4.1.2
   - Development Platform: Mac
@@ -48,15 +53,22 @@ browseVignettes("LivTransplantEvolution")
 ```
 
 `LivTransplantEvolution` contains 6 functions. 
-*prepareData* Prepares and cleans up raw clinical serum blood test result results for a single patient to extract Liver transplantation relevant clinical serum biomarkers, specifically those used in the MELD score calculations.
+
+*prepareData* Prepares and cleans up raw patient data from SRTR data base to extract Liver transplantation relevant clinical serum biomarkers, specifically those used in the MELD, MELD-na and MELD 3.0 risk score calculations.
+
 *calcMELD* Will calculate the MELD score for a patient
+
 *calcMELDna* Will calulcate the MELD-na score for a patient
+
 *calcMELDthree* Will calculate the MELD-3.0 score for a patient
+
 *createMELDdf* Will create a dataframe from the cleaned up data to contain
 longitudinal MELD scores values at each timepoint
+
 *visualizeMELD* Creates a visual with all 3 MELD score evolutions together.
 
 Package visual result:
+
 ![](./inst/MELD_scores.png)
 
 ## Contributions
