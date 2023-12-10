@@ -70,7 +70,7 @@ MELD-na is ≥40 = 71.3\% Mortality.
 #Example 1
 # Calculate the MELDna score for a person who has dialyisTwoTimeWeek as True
 
-calcMELDna(True, 2.3, 1.9, 2, 145)
+calcMELDna('TRUE', 2.3, 1.9, 2, 145)
 
 }
 \references{
