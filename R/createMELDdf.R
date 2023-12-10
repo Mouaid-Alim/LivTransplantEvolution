@@ -1,152 +1,135 @@
 
-library(dplyr)
-library(purrr)
-calcMELD <- function(dialyisTwoTimeWeek, creatinine, bilirubin, inr){
-
-  if (dialyisTwoTimeWeek == 1) {
-    creatinine = 4
-  }
-
-  creatValue = 0.957*log(creatinine)
-  biliValue = 0.378*log(bilirubin)
-  inrValue = 1.120*log(inr)
-
-  meldScore = (creatValue + biliValue + inrValue + 0.643)*10
-
-  meldScore = round(meldScore, digits = 0)
-
-  if (meldScore <  1) {
-    meldScore = 1
-  }
-  if (meldScore > 40) {
-    meldScore = 40
-  }
-
-  return(meldScore)
-}
-
-calcMELDna <- function(dialyisTwoTimeWeek, creatinine, bilirubin, inr, sodium){
-
-  if (dialyisTwoTimeWeek == 1 || creatinine > 4) {
-    creatinine = 4
-  }
-  if (creatinine < 1) {
-    creatinine = 1
-  }
-  if (bilirubin < 1) {
-    bilirubin = 1
-  }
-  if (inr < 1) {
-    inr = 1
-  }
-  if (sodium < 125) {
-    sodium = 125
-  } else if (sodium > 137) {
-    sodium = 137
-  }
-
-  creatValue = 0.957*log(creatinine)
-  biliValue = 0.378*log(bilirubin)
-  inrValue = 1.120*log(inr)
-
-  meldNaScore = (creatValue + biliValue + inrValue + 0.643)*10
-
-  meldNaScore = round(meldNaScore, digits = 0)
-
-  if (meldNaScore <  1) {
-    meldNaScore = 1
-  } else if (meldNaScore > 11){
-    meldNaScore = meldNaScore + 1.32*(137 - sodium) -
-      (0.033*meldNaScore*(137 - sodium))
-  }
-
-  if (meldNaScore > 40){
-    meldNaScore = 40
-  }
-
-  return(meldNaScore)
-}
-
-calcMELDThree <- function(sex, creatinine, inr, bilirubin, sodium, albumin){
-
-  if (creatinine > 3) {
-    creatinine = 3
-  }
-  if (creatinine < 1) {
-    creatinine = 1
-  }
-  if (bilirubin < 1) {
-    bilirubin = 1
-  }
-  if (inr < 1) {
-    inr = 1
-  }
-  if (sodium < 125) {
-    sodium = 125
-  }
-  if (sodium > 137) {
-    sodium = 137
-  }
-  if (albumin < 1.5) {
-    albumin = 1.5
-  }
-  if (albumin > 3.5) {
-    albumin = 3.5
-  }
-
-  femaleOffset = 1.33 * sex
-  creatValue = 11.14 * log(creatinine)
-  biliValue = 4.56 * log(bilirubin)
-  inrValue = 9.09 * log(inr)
-  sodValue = 0.82 * (137 - sodium)
-  albValue = 1.85 * (3.5 - albumin)
-  sodBiliValue = 0.24 * (137 - sodium) * log(bilirubin)
-  albCreatValue =  1.83 * (3.5 - albumin) * log(creatinine)
-
-  meldThreeScore = femaleOffset + creatValue + biliValue + inrValue + albValue +
-    sodValue - sodBiliValue - albCreatValue + 6
-
-  meldThreeScore = round(meldThreeScore, digits = 0)
-
-  if (meldThreeScore <  1) {
-    meldThreeScore = 1
-  }
-
-  if (meldThreeScore > 40){
-    meldThreeScore = 40
-  }
-
-  return(meldThreeScore)
-}
-
-
-
-#' Create a data frame with all MELD scores
+#' Create a data frame with copmuted MELD, MELD-na and MELD3.0 scores for each
+#' entry
 #'
-#' This function uses the functions to calculate the different MELD scores to
-#' to then create a dataframe containing MELD score values corresopnding to each
-#' row in the dataframe created by the preapreData function
+#' This function uses the calcMELD, calcMELDna and calcMELDThree functions to
+#' calculate the different MELD scores for each row entry in the provided
+#' dataframe. The provided dataframe should correspond to the dataframe created
+#' by running the prepareData function on the raw SRTR stathiist_liin datafile
+#' in csv form. The input dataframe needs to have the following columns:
+#' Patient_ID, Data, Albumin, Bilirubin, INR, Serum_Creatinine, Serum_Sodium,
+#' Gender, Dialysis_In_Past_Week.
 #'
-#' @param data dataframe created by the preapreData function
+#' @param data Dataframe created by the prepareData function. Needs to contain
+#' the following columns:
+#' Patient_ID, Data, Albumin, Bilirubin, INR, Serum_Creatinine, Serum_Sodium,
+#' Gender, Dialysis_In_Past_Week.
 #'
-#' @return MELDdf, a dataframe containing the different values of the differnet
-#' MELD scores by date
+#' @return MELDdf, a dataframe containing the following columns: Patient_ID,
+#' Date, MELD, MELDna, MELD3_0.
+#' It will contain the MELD, MELD-na and MELD-3.0 scores from the input
+#' dataframe containing the Liver transplantation biomarkers and clinical data
 #' @export
 #' @import dplyr
 #' @import purrr
+#' @import devtools
+#' @import LivTransplantEvolution
+#' @import tidyr
 #'
 #' @examples
-#' #Example 1
-#' createMELDdf(liver_df)
+#' # Example 1
+#' # Load the sample cleaned up data from the CleanedUpSamplePatientData.rda
+#' # file,  then use it ro run the createMELDdf function
+#' \dontrun{
+#' load("../data/cleanedUpSamplePatientData.rda")
+#' createMELDdf(cleanedUpSamplePatientData)
+#' }
+#'
+#' @references
+#'Wickham H, François R, Henry L, Müller K, Vaughan D (2023).
+#'   *dplyr: A Grammar of Data Manipulation.* R package version 1.1.4,
+#'   https://github.com/tidyverse/dplyr, https://dplyr.tidyverse.org.
+#'
+#'Wickham H, Henry L (2023). *purrr: Functional Programming Tools.*
+#'   R package version 1.0.2,
+#'   https://github.com/tidyverse/purrr, https://purrr.tidyverse.org/.
+#'
+#'Wickham H, Hester J, Chang W, Bryan J (2022).
+#'   *devtools: Tools to Make Developing R Packages Easier.*
+#'   https://devtools.r-lib.org/, https://github.com/r-lib/devtools.
+#'
+#'Wickham H, Vaughan D, Girlich M (2023). *tidyr: Tidy Messy Data.*
+#'   R package version 1.3.0,
+#'   https://github.com/tidyverse/tidyr, https://tidyr.tidyverse.org.
 #'
 createMELDdf <- function(data) {
+
+  # Input Checks
+  # check if all coloumns present
+  if (!("Patient_ID" %in% colnames(data))) {
+    stop("Your dataset does not have the Patient_ID column, make sure it does
+         before running this function")
+  }
+  if (!("Date" %in% colnames(data))) {
+    stop("Your dataset does not have the Date column, make sure it does
+         before running this function")
+  }
+  if (!("Albumin" %in% colnames(data))) {
+    stop("Your dataset does not have the Albumin column, make sure it does
+         before running this function")
+  }
+  if (!("INR" %in% colnames(data))) {
+    stop("Your dataset does not have the INR column, make sure it
+         does before running this function")
+  }
+  if (!("Serum_Creatinine" %in% colnames(data))) {
+    stop("Your dataset does not have the Serum_Creatinine column, make sure it
+         does before running this function")
+  }
+  if (!("Serum_Sodium" %in% colnames(data))) {
+    stop("Your dataset does not have the Serum_Sodium column, make sure it
+         does before running this function")
+  }
+  if (!("Gender" %in% colnames(data))) {
+    stop("Your dataset does not have the Gender column, make sure
+         it does before running this function")
+  }
+  if (!("Dialysis_In_Past_Week" %in% colnames(data))) {
+    stop("Your dataset does not have the Dialysis_In_Past_Week column, make
+         sure it does before running this function")
+  }
+
+  # install dplyr package if it is not already installed
+  if (!requireNamespace("dplyr", quietly = TRUE)) {
+    install.packages("dplyr")
+    library(dplyr)
+  }
+  # install purrr package if it is not already installed
+  if (!requireNamespace("purrr", quietly = TRUE)) {
+    install.packages("purrr")
+    library(purrr)
+  }
+  # install tidyr package if it is not already installed
+  if (!requireNamespace("tidyr", quietly = TRUE)) {
+    install.packages("tidyr")
+    library(tidyr)
+  }
+  # install devtools package if it is not already installed
+  if (!requireNamespace("devtools", quietly = TRUE)) {
+    install.packages("devtools")
+    library(devtools)
+  }
+  # install LivTransplantEvolution package if it is not already installed
+  if (!requireNamespace("LivTransplantEvolution", quietly = TRUE)) {
+    devtools::install_github("Mouaid-Alim/LivTransplantEvolution")
+    library("LivTransplantEvolution")
+  }
+
+  # Drop rows with na values from the data frame
+  data <- data %>% drop_na()
+
+  # Add entries to each row in the input data frame for the
+  # calculated MELD, MELD-na and MELD-3.0 risk score values using the functions
+  # created specifcally to calculate them in the LivTransplantEvolution package
   MELDdf <- data %>%
     dplyr::mutate(
-      MELD = purrr::pmap_dbl(list(DialysisTwiceInPastWeek, Creatinine, Total_Bilirubin, INR), calcMELD),
-      MELDna = purrr::pmap_dbl(list(DialysisTwiceInPastWeek, Creatinine, Total_Bilirubin, INR, Sodium), calcMELDna),
-      MELD3_0 = purrr::pmap_dbl(list(Sex, Creatinine, Total_Bilirubin, INR, Sodium, Albumin), calcMELDThree)
+      MELD = purrr::pmap_dbl(list(Dialysis_In_Past_Week, Serum_Creatinine, Bilirubin, INR), LivTransplantEvolution::calcMELD),
+      MELDna = purrr::pmap_dbl(list(Dialysis_In_Past_Week, Serum_Creatinine, Bilirubin, INR, Serum_Sodium), LivTransplantEvolution::calcMELDna),
+      MELD3_0 = purrr::pmap_dbl(list(Gender, Serum_Creatinine, Bilirubin, INR, Serum_Sodium, Albumin), LivTransplantEvolution::calcMELDThree)
     ) %>%
-    dplyr::select(Date, MELD, MELDna, MELD3_0)
+    # return a dataframe containing the patient_Id, the date of the entry and
+    # the MELD scores
+    dplyr::select(Patient_ID, Date, MELD, MELDna, MELD3_0)
 
   return(MELDdf)
 }

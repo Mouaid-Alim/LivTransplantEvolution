@@ -4,29 +4,51 @@
 \alias{visualizeMELD}
 \title{Function to plot MELD scores}
 \usage{
-visualizeMELD(meldScoresdf)
+visualizeMELD(meldScoresdf, patient_id)
 }
 \arguments{
-\item{meldScoresdf}{a data frame containing the MELD scores organized by date
-for MELD, MELDna and MELD-3.0 generated using the createMELDdf function}
+\item{meldScoresdf}{data frame generated using the createMELDdf function
+containing the following non-empty columns:
+Patient_ID (patient ID of that row's entries), Date (date of entry),
+MELD (MELD score for that entry), MELDna (MELD-na score for that entry),
+MELD3_0 (MELD-3.0 score for that entry). The dataframe would have MELD,
+MELD-na and MELD-3.0 risk score values at different dates for different
+patients}
+
+\item{patient_id}{A valid numerical patient ID that represents some row
+entries in the MELDdf provided}
 }
 \value{
-no return, plots MELD scores using ggplot2
+no return, plots longitudinal trajectory of MELD, MELD-na and
+MELD-3.0 risk score trajectories for specified patient with patient_id using
+ggplot2
 }
 \description{
-Visualize all the MELD scores for the patietns
+A function that takes a dataframe created by the createMELDdf function and a
+valid patient ID and returns the plotted MELD, MELD-na and MELD-3.0
+trajectories for that patient using ggplot2. The output is a longitudinal
+line graph of each different MELD score on the same line graph.
+A valid input data frame must have the following non-empty columns:
+Patient_ID (patient ID of that row's entries), Date (date of entry),
+MELD (MELD score for that entry), MELDna (MELD-na score for that entry),
+MELD3_0 (MELD-3.0 score for that entry).
 }
 \examples{
-#Example 1
-visualizeMELD(MELD_scores_df)
+# Example 1
+# load the sample MELDdf from the sampleMELDdf.rda file then run visuaizeMELD
+# on it to visualize the MELD score for that patient
+\dontrun{
+load("../data/sampleMELDdf.rda")
+visualizeMELD(sampleMELDdf)
+}
 
 }
 \references{
-Wickham H (2016). ggplot2: Elegant Graphics for Data Analysis.
+Wickham H (2016). \emph{ggplot2: Elegant Graphics for Data Analysis.}
 Springer-Verlag New York. ISBN 978-3-319-24277-4,
 https://ggplot2.tidyverse.org.
 
-Wickham H, Vaughan D, Girlich M (2023). tidyr: Tidy Messy Data. R package
+Wickham H, Vaughan D, Girlich M (2023). \emph{tidyr: Tidy Messy Data. R package}
 version 1.3.0, https://github.com/tidyverse/tidyr,
 https://tidyr.tidyverse.org.
 }

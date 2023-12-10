@@ -60,28 +60,32 @@ The SRTR database.
 Srtr.org https://www.srtr.org/about-the-data/the-srtr-database/.
 
 Kamath, P. et al. A model to predict survival in patients with end-stage
-liver disease. Gastroenterology 120, A76–A77 (2001).
+liver disease. \emph{Gastroenterology} 120, A76–A77 (2001).
 
 Kim, W. R. et al. MELD 3.0: The model for end-Stage Liver Disease updated for
-the modern era. Gastroenterology 161, 1887-1895.e4 (2021).
+the modern era. \emph{Gastroenterology} 161, 1887-1895.e4 (2021).
 
-Kwong, A. J. et al. OPTN/SRTR 2019 annual data report: Liver. Am. J.
-Transplant 21 Suppl 2, 208–315 (2021).
+Kwong, A. J. et al. OPTN/SRTR 2019 annual data report: Liver. \emph{Am. J.}
+\emph{Transplant} 21 Suppl 2, 208–315 (2021).
 
 Slack, A., Yeoman, A. & Wendon, J. Renal dysfunction in chronic liver
-disease. Crit. Care 14, 214 (2010).
+disease. \emph{Crit. Care} 14, 214 (2010).
 
 Biggins, S. W. et al. Serum sodium predicts mortality in patients listed for
-liver transplantation. Hepatology 41, 32–39 (2005).
+liver transplantation. \emph{Hepatology} 41, 32–39 (2005).
 
 Guerra Ruiz, A. R. et al. Measurement and clinical usefulness of bilirubin in
-liver disease. Adv. Lab. Med. 2, 352–361 (2021).
+liver disease. \emph{Adv. Lab. Med.} 2, 352–361 (2021).
 
 Kalas, M. A., Chavez, L., Leon, M., Taweesedt, P. T. & Surani, S. Abnormal
-liver enzymes: A review for clinicians. World J. Hepatol.
+liver enzymes: A review for clinicians. \emph{World J. Hepatol.}
 13, 1688–1698 (2021).
 
 Tufoni, M., Zaccherini, G., Caraceni, P. & Bernardi, M. Albumin: Indications
-in chronic liver disease. United European Gastroenterol. J.
+in chronic liver disease. \emph{United European Gastroenterol. J.}
 8, 528–535 (2020).
+
+#'Wickham H, François R, Henry L, Müller K, Vaughan D (2023).
+\emph{dplyr: A Grammar of Data Manipulation.} R package version 1.1.4,
+https://github.com/tidyverse/dplyr, https://dplyr.tidyverse.org.
 }
