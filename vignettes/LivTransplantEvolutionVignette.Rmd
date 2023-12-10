@@ -36,7 +36,8 @@ ls("package:LivTransplantEvolution")
 ```
 
 ### Minimal requirements
-You will need to have dataset with 
+To use the package, you will need to have access to the SRTR datsets specifically 
+the   
 
 ## Application
 ```{r, eval=FALSE}
