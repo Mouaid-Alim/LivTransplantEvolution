@@ -4,21 +4,28 @@
 \alias{calcMELDThree}
 \title{Calculate the Model for End-Stage Liver Disease-3.0 (MELD-3.0) risk score}
 \usage{
-calcMELDThree(sex, creatinine, inr, bilirubin, sodium, albumin)
+calcMELDThree(
+  sex = "M",
+  creatinine = 1.3,
+  bilirubin = 1.2,
+  inr = 1.1,
+  sodium = 140,
+  albumin = 4
+)
 }
 \arguments{
 \item{creatinine}{a numeric value of type 'double' for the creatinine
 biomarker which reflects kidney function, as kidney dysfunction is often
 associated with worsening Liver function. Unit: mg/dl}
 
-\item{inr}{a numeric value of type 'double' for International Normalized
-Ratio (INR). INR is a blood clotting test that is a measure how quickly your
-blood clots and basically how thin your blood is. It is unitless}
-
 \item{bilirubin}{a numeric value of type 'double' for the bilirubin biomarker
 that measures the ability of the liver to process byproducts from the
 breakdown of old red blood cells. Elevated levels in the blood
 (hyperbilirubinemia) indicate poor liver function. Unit: mg/dl}
+
+\item{inr}{a numeric value of type 'double' for International Normalized
+Ratio (INR). INR is a blood clotting test that is a measure how quickly your
+blood clots and basically how thin your blood is. It is unitless}
 
 \item{sodium}{a numeric value of type 'double' for the serum sodium level.
 Another indicator of Kidney function. Sodium is only taken into account for

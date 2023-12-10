@@ -133,18 +133,18 @@ calcMELDna <- function(dialyisTwoTimeWeek = 'FALSE', creatinine = 1.3,
 
   # Checking Boundary values for MELDna score and calculating MELD-na only if
   # the above MELD is above 11 as sodium is not impactful for MELD below 11
-  if (meldNaScore <  1) {
+  if (meldScore <  1) {
     meldNaScore = 1
-  } else if (meldNaScore > 11){
-    meldNaScore = meldNaScore + 1.32*(137 - sodium) -
-      (0.033*meldNaScore*(137 - sodium))
+  } else if (meldScore > 11){
+    meldNaScore = meldScore + 1.32*(137 - sodium) -
+      (0.033*meldScore*(137 - sodium))
   }
   if (meldNaScore > 40){
     meldNaScore = 40
   }
 
   # Round MELD-na score to whole number
-  meldNaScore = round(meldScore, digits = 0)
+  meldNaScore = round(meldNaScore, digits = 0)
 
   return(meldNaScore)
 }
