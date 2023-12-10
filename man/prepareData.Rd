@@ -29,7 +29,7 @@ are used for the allocation of deceased liver organs in North America.
 The extracted columns are CANHX_BEGIN_DT which
 contains the date of each entry, CANHX_ALBUMIN which contains data for the
 Albumin biomarker a protein which low levels of can indicate chronic liver
-disease or liver dysfunction as is used in the MELD 3.0 calculation,
+disease or liver dysfunction. It is used in the MELD 3.0 calculation;
 CANHX_BILI which contains data for the bilirubin biomarker a byproduct of red
 blood cell breakdown in the liver which elevated levels of can indicate poor
 liver function and is used in all calculating all three MELD scores,
