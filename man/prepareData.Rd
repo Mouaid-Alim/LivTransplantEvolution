@@ -2,7 +2,8 @@
 % Please edit documentation in R/prepareData.R
 \name{prepareData}
 \alias{prepareData}
-\title{Process raw patient data and extract relevant biomarkers}
+\title{Process raw patient SRTR data stathiist_liin data file and extract relevant
+biomarkers}
 \usage{
 prepareData(filePath)
 }
@@ -47,10 +48,40 @@ calculation; PX_ID which contains the ID of the patient the info in the row's
 entry is for.
 }
 \examples{
-#Example 1
-prepareDate(../data/liver_data)
-
+# Example 1
+# provide the prepareData function with the path to a csv folder containg the
+# data and it will return a dataframe with the relevant data
+\dontrun{
+cleanedData = prepareData(../inst//extdata/updated_meld_patient_data.csv)
+}
 }
 \references{
-UCI Machine Learning. (2017). Indian Liver Patient Records \link{Data set}.
+The SRTR database.
+Srtr.org https://www.srtr.org/about-the-data/the-srtr-database/.
+
+Kamath, P. et al. A model to predict survival in patients with end-stage
+liver disease. Gastroenterology 120, A76–A77 (2001).
+
+Kim, W. R. et al. MELD 3.0: The model for end-Stage Liver Disease updated for
+the modern era. Gastroenterology 161, 1887-1895.e4 (2021).
+
+Kwong, A. J. et al. OPTN/SRTR 2019 annual data report: Liver. Am. J.
+Transplant 21 Suppl 2, 208–315 (2021).
+
+Slack, A., Yeoman, A. & Wendon, J. Renal dysfunction in chronic liver
+disease. Crit. Care 14, 214 (2010).
+
+Biggins, S. W. et al. Serum sodium predicts mortality in patients listed for
+liver transplantation. Hepatology 41, 32–39 (2005).
+
+Guerra Ruiz, A. R. et al. Measurement and clinical usefulness of bilirubin in
+liver disease. Adv. Lab. Med. 2, 352–361 (2021).
+
+Kalas, M. A., Chavez, L., Leon, M., Taweesedt, P. T. & Surani, S. Abnormal
+liver enzymes: A review for clinicians. World J. Hepatol.
+13, 1688–1698 (2021).
+
+Tufoni, M., Zaccherini, G., Caraceni, P. & Bernardi, M. Albumin: Indications
+in chronic liver disease. United European Gastroenterol. J.
+8, 528–535 (2020).
 }

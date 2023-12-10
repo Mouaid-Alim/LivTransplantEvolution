@@ -1,6 +1,6 @@
 Package: LivTransplantEvolution
 Title: Liver Tranplsant Data Analysis for MELD Scores Visualization   
-Version: 0.0.0.9000
+Version: 0.0.1.0
 Authors@R: 
     person("Mouaid", "Alim", , "mouaidalim1@gmail.com", role = c("aut", "cre"))
 Maintainer: Mouaid Alim <mouaidalim1@gmail.com>
