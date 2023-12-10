@@ -19,10 +19,19 @@ in 2021. Various allocaiton systems exist but the main one is the Model
 for End-stage Liver Disease (MELD) score, a linear model that uses the
 log of the Serum Creatinine, International Normalized Ratio (INR) and
 Bilirubin. It is the the adopted method of severity calculation in the
-united states and Canada. MELD-na is an augmentation to the MELD score
-calculation that takes into account Serum Sodium and MELD 3.0 is an
-improvement on the MELD score that takes into account Albumin among
-other factors.
+united states and Canada.
+
+The MELD score informs the 90 day mortality of that patient following
+this scheme: MELD is ≤9 = 1.9% Mortality, MELD is 10–19 = 6.0%
+Mortality, MELD is 20–29 = 19.6% Mortality MELD is 30–39 = 52.6%
+Mortality, MELD is ≥40 = 71.3% Mortality. MELD-na is an augmentation to
+the MELD score calculation that takes into account Serum Sodium as it
+was shown that taking sodium into account for the MELD score calculation
+would improve it somewhat. MELD 3.0 is an improvement on the MELD-na
+score that tries to compensate for equity issues identified with the
+MELD and MELD-na risk scores such as sex-based disparity against women.
+MELD 3.0 takes into account the the albumin biomarker and the gender of
+the patient.
 
 The Scientific Registry of Transplant Recipients (SRTR) database is the
 database containing information largely collected by the Organ
@@ -100,7 +109,7 @@ every patient
 
 Package visual result:
 
-![](./inst/MELD_scores.png)
+![](./inst/extdata/MELD_scores.png)
 
 ## Contributions
 
@@ -109,8 +118,11 @@ This Package is Created by Mouaid Alim.
 The `prepareData` function uses the `reader` package to read the csv
 file and uses the `dplyr` package to create the final dataframe with
 correct column names. The `createMELDdf` function uses the `dplyr`
-packaage to create the MELD dataframe and uses the `purr` package to
-efficciently calculate the MELD scores for the dataframe. The
+packaage to create the MELD dataframe, uses the `purr` package to
+efficciently calculate the MELD scores for the dataframe, uses the
+`tidyr` package to clean up the input dataframe and uses the `devtools`
+package to import the LivTransplantEvolution package to be able to call
+the buil-in functions for calculating the various MELD scores. The
 `visualizeMELD` function uses the `tidyr` to reshape the data for
 plotting and uses the `ggplot2` package for plotting the MELD visuals.
 Formula used to calculate MELD score in `calcMELD` function adapted from
@@ -150,6 +162,21 @@ function adapted from paper by Kim, W. R. et al
 12. Tufoni, M., Zaccherini, G., Caraceni, P. & Bernardi, M. Albumin:
     Indications in chronic liver disease. *United European
     Gastroenterol. J.* 8, 528–535 (2020).
+13. Wickham H, François R, Henry L, Müller K, Vaughan D (2023). *dplyr:
+    A Grammar of Data Manipulation.* R package version 1.1.4,
+    <https://github.com/tidyverse/dplyr>, <https://dplyr.tidyverse.org>.
+14. Wickham H, Henry L (2023). *purrr: Functional Programming Tools.* R
+    package version 1.0.2, <https://github.com/tidyverse/purrr>,
+    <https://purrr.tidyverse.org/>.
+15. Wickham H, Hester J, Chang W, Bryan J (2022). *devtools: Tools to
+    Make Developing R Packages Easier.* <https://devtools.r-lib.org/>,
+    <https://github.com/r-lib/devtools>.
+16. Wickham H, Vaughan D, Girlich M (2023). *tidyr: Tidy Messy Data.* R
+    package version 1.3.0, <https://github.com/tidyverse/tidyr>,
+    <https://tidyr.tidyverse.org>.
+17. Wickham H (2016). *ggplot2: Elegant Graphics for Data Analysis.*
+    Springer-Verlag New York. ISBN 978-3-319-24277-4,
+    <https://ggplot2.tidyverse.org>.
 
 ## Acknowledgements
 
