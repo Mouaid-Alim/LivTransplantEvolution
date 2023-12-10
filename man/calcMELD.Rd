@@ -2,38 +2,65 @@
 % Please edit documentation in R/calcMELD.R
 \name{calcMELD}
 \alias{calcMELD}
-\title{Calculate MELD score}
+\title{Calculate the Model for End-Stage Liver Disease (MELD) risk score}
 \usage{
-calcMELD(dialyisTwoTimeWeek, creatinine, bilirubin, inr)
+calcMELD(
+  dialyisTwoTimeWeek = "FALSE",
+  creatinine = 1.3,
+  bilirubin = 1.2,
+  inr = 1.1
+)
 }
 \arguments{
 \item{dialyisTwoTimeWeek}{a boolean value indicating whether the patient has
 had dialysis at least twice in the past week. An indication of creatinine
-level and kidney function}
+level and kidney function. Set Creatinine value automatically to 4 if value is
+TRUE}
 
-\item{creatinine}{a serum biomarker that reflects the kidney function. Unit:
-mg/dl}
+\item{creatinine}{a numeric value of type 'double' for the creatinine
+biomarker which reflects kidney function, as kidney dysfunction is often
+associated with worsening Liver function. Unit: mg/dl}
 
-\item{bilirubin}{a biomarker that measures the ability of the liver to
-process this byproduct from the breakdown of old red blood cells.  Elevated
-levels in the blood (hyperbilirubinemia) indicate poor liver function
-unit: mg/dl}
+\item{bilirubin}{a numeric value of type 'double' for the bilirubin biomarker
+that measures the ability of the liver to process byproducts from the
+breakdown of old red blood cells. Elevated levels in the blood
+(hyperbilirubinemia) indicate poor liver function. Unit: mg/dl}
 
-\item{inr}{International NOrmalized Ratio is a blood clotting test that is a
-measure how quickly your blood clots and basically how thin your blood is.}
+\item{inr}{a numeric value of type 'double' for International Normalized
+Ratio (INR). INR is a blood clotting test that is a measure how quickly your
+blood clots and basically how thin your blood is. It is unitless}
 }
 \value{
 meldScore the MELD score calculation based on the formula devised by
-Kamath et al.
+Kamath et al. MELD score is between 1 and 40 and any calculated value above
+or below these boundary values are set as closest boundary value and returned
+The MELD score informs the 90 day mortality of that patient and can be
+interpreted as follows: MELD is ≤9 = 1.9\% Mortality,
+MELD is 10–19 = 6.0\% Mortality, MELD is 20–29 = 19.6\% Mortality,
+MELD is 30–39 = 52.6\% Mortality, MELD is ≥40 = 71.3\% Mortality.
 }
 \description{
-A function that calculates the original MELD score
+A function that calculates the MELD-na score using the formula
+introduced by Kamath et al.
+Model for End-Stage Liver Disease (MELD) risk score is used to measure the
+severity of Liver dysfunction and is used for the allocation of Deceased
+Liver Organs in North America. It indicates the 90 day chances of mortality
+for this patient. The calculation of MELD requires 3 biomarkers, the
+patient's Creatinine, Bilirubin and International Normalized Ratio (INR).
+Whether the patient has had dialysis in the past Week is also taken as input.
+Although it is not directly used in the formula but is an indication of
+creatinine level and kidney function. It is used to augment creatinine value
+and automatically set it to 4 if TRUE. The MELD score informs the 90 day
+mortality of that patient and can be interpreted as follows:
+MELD is ≤9 = 1.9\% Mortality, MELD is 10–19 = 6.0\% Mortality,
+MELD is 20–29 = 19.6\% Mortality, MELD is 30–39 = 52.6\% Mortality,
+MELD is ≥40 = 71.3\% Mortality.
 }
 \examples{
 #Example 1
 # Calculate the MELD score for a person who has dialyisTwoTimeWeek as True
 
-calcMELD(True, 2.3, 1.9, 2)
+calcMELD('TRUE', 2.3, 1.9, 2)
 
 }
 \references{
@@ -47,4 +74,8 @@ Howard T, Merion RM, Wolfe RA, Krom R; United Network for Organ Sharing
 Liver Disease Severity Score Committee. Model for end-stage liver disease
 (MELD) and allocation of donor livers. Gastroenterology.
 2003 Jan;124(1):91-6. doi: 10.1053/gast.2003.50016. PMID: 12512033.
+
+MELD serum sodium policy changes - OPTN. (n.d.). Hrsa.gov. Retrieved
+November 14, 2023, from
+https://optn.transplant.hrsa.gov/news/meld-serum-sodium-policy-changes/
 }

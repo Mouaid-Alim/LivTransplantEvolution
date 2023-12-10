@@ -2,34 +2,69 @@
 % Please edit documentation in R/calcMELDna.R
 \name{calcMELDna}
 \alias{calcMELDna}
-\title{Calculate MELD-na score}
+\title{Calculate the Model for End-Stage Liver Disease-Sodium (MELD-na) risk score}
 \usage{
-calcMELDna(dialyisTwoTimeWeek, creatinine, bilirubin, inr, sodium)
+calcMELDna(
+  dialyisTwoTimeWeek = "FALSE",
+  creatinine = 1.3,
+  bilirubin = 1.2,
+  inr = 1.1,
+  sodium = 140
+)
 }
 \arguments{
 \item{dialyisTwoTimeWeek}{a boolean value indicating whether the patient has
 had dialysis at least twice in the past week. An indication of creatinine
-level and kidney function}
+level and kidney function. Set Creatine value automatically to 4 if value is
+TRUE}
 
-\item{creatinine}{a serum biomarker that reflects the kidney function. Unit:
-mg/dl}
+\item{creatinine}{a numeric value of type 'double' for the creatinine
+biomarker which reflects kidney function, as kidney dysfunction is often
+associated with worsening Liver function. Unit: mg/dl}
 
-\item{bilirubin}{a biomarker that measures the ability of the liver to
-process this byproduct from the breakdown of old red blood cells.  Elevated
-levels in the blood (hyperbilirubinemia) indicate poor liver function
-unit: mg/dl}
+\item{bilirubin}{a numeric value of type 'double' for the bilirubin biomarker
+that measures the ability of the liver to process byproducts from the
+breakdown of old red blood cells. Elevated levels in the blood
+(hyperbilirubinemia) indicate poor liver function. Unit: mg/dl}
 
-\item{inr}{International Normalized Ratio is a blood clotting test that is a
-measure how quickly your blood clots and basically how thin your blood is.}
+\item{inr}{a numeric value of type 'double' for International Normalized
+Ratio (INR). INR is a blood clotting test that is a measure how quickly your
+blood clots and basically how thin your blood is. It is unitless}
 
-\item{sodium}{serum sodium level. Unit: mEq/L}
+\item{sodium}{a numeric value of type 'double' for the serum sodium level.
+Another indicator of Kidney function. Sodium is only taken into account for
+the MELD-na calculation if the MELD is > 11. Unit: mEq/L}
 }
 \value{
-meldNaScore The MELD-na score calculation based on the formula
-per pages 4-5 in the January 2016 OPTN policy
+meldNaScore the MELD-na score calculation based on the formula devised by
+Kamath et al. and augmented by Biggins, S. W. et al.The MELD-na score
+calculation used here is based on the formula per pages 4-5 in the
+January 2016 OPTN policy.
+MELD-na score can be between 1 and 40 and any calculated value above or below
+these boundary values are set as closest boundary value and returned.
+The MELD-na score informs the 90 day mortality of that patient and can be
+interpreted as follows: MELD-na is ≤9 = 1.9\% Mortality,
+MELD-na is 10–19 = 6.0\% Mortality, MELD-na is 20–29 = 19.6\% Mortality,
+MELD-na is 30–39 = 52.6\% Mortality, MELD-na is ≥40 = 71.3\% Mortality.
 }
 \description{
-A function that calculates the MELD-na score per the UNOS/OPTN 2016 policy
+A function that calculates the MELD-na score using the formula
+introduced by kamath et al and augmented by Biggins, S. W. et al.
+Model for End-Stage Liver Disease (MELD) risk score is used to measure the
+severity of Liver dysfunction and is used for the allocation of Deceased
+Liver Organs in North America. It indicates the 90 day chances of mortality
+for this patient. The calculation of MELD-na requires 4 biomarkers, the
+patient's Creatinine, Bilirubin and International
+Normalized Ratio (INR) and Serum Sodium level.  Whether the patient has had
+dialyis in the past Week is also taken as input. Although it is not directly
+used in the formula but is an indication of creatinine level and kidney
+function. It is used to augment creatinine value and automatically set it
+to 4 if TRUE. The MELD-na score calculation based on the formula per pages
+4-5 in the January 2016 OPTN policy. The MELD-na score informs the 90 day
+mortality of that patient and can be interpreted as follows:
+MELD-na is ≤9 = 1.9\% Mortality,MELD-na is 10–19 = 6.0\% Mortality,
+MELD-na is 20–29 = 19.6\% Mortality, MELD-na is 30–39 = 52.6\% Mortality,
+MELD-na is ≥40 = 71.3\% Mortality.
 }
 \examples{
 #Example 1
@@ -49,6 +84,9 @@ Howard T, Merion RM, Wolfe RA, Krom R; United Network for Organ Sharing
 Liver Disease Severity Score Committee. Model for end-stage liver disease
 (MELD) and allocation of donor livers. Gastroenterology.
 2003 Jan;124(1):91-6. doi: 10.1053/gast.2003.50016. PMID: 12512033.
+
+Biggins, S. W. et al. Serum sodium predicts mortality in patients listed for
+liver transplantation. \emph{Hepatology} 41, 32–39 (2005).
 
 MELD serum sodium policy changes - OPTN. (n.d.). Hrsa.gov. Retrieved
 November 14, 2023, from

@@ -2,42 +2,57 @@
 % Please edit documentation in R/calcMELDThree.R
 \name{calcMELDThree}
 \alias{calcMELDThree}
-\title{Calculate MELD-3.0 score}
+\title{Calculate the Model for End-Stage Liver Disease-3.0 (MELD-3.0) risk score}
 \usage{
 calcMELDThree(sex, creatinine, inr, bilirubin, sodium, albumin)
 }
 \arguments{
-\item{creatinine}{a serum biomarker that reflects the kidney function. Unit:
-mg/dl}
+\item{creatinine}{a numeric value of type 'double' for the creatinine
+biomarker which reflects kidney function, as kidney dysfunction is often
+associated with worsening Liver function. Unit: mg/dl}
 
-\item{inr}{International Normalized Ratio is a blood clotting test that is a
-measure how quickly your blood clots and basically how thin your blood is.}
+\item{inr}{a numeric value of type 'double' for International Normalized
+Ratio (INR). INR is a blood clotting test that is a measure how quickly your
+blood clots and basically how thin your blood is. It is unitless}
 
-\item{bilirubin}{a biomarker that measures the ability of the liver to
-process this byproduct from the breakdown of old red blood cells.  Elevated
-levels in the blood (hyperbilirubinemia) indicate poor liver function
-unit: mg/dl}
+\item{bilirubin}{a numeric value of type 'double' for the bilirubin biomarker
+that measures the ability of the liver to process byproducts from the
+breakdown of old red blood cells. Elevated levels in the blood
+(hyperbilirubinemia) indicate poor liver function. Unit: mg/dl}
 
-\item{sodium}{serum sodium level. Unit: mEq/L}
+\item{sodium}{a numeric value of type 'double' for the serum sodium level.
+Another indicator of Kidney function. Sodium is only taken into account for
+the MELD-na calculation if the MELD is > 11. Unit: mEq/L}
 
-\item{albumin}{A liver synthesized protein which low levels of can indicate
+\item{albumin}{a numeric value of type 'double' for the albumin biomarker.
+Albumin is a liver synthesized protein which low levels of can indicate
 chronic liver disease or liver dysfunction. Unit: mg/dL}
 
 \item{Sex}{a boolean value indicating whether the patient is female or not.
 As females get extra points in the calculation to account for biases.}
 }
 \value{
-meldThreeScore The MELD-3.0 score calculation based on the paper by
-Kim et al.
+meldThreeScore The 'double' value returned from calculating the
+MELD-3.0 score calculation based on the paper by Kim et al.
 }
 \description{
-A function that calculates the MELD-3.0 score per Kim et al.
+A function that calculates the MELD-3.0 score using the formula
+introduced by Kim et all.
+Model for End-Stage Liver Disease-3.0 (MELD-3.0) risk score is used to
+measure theseverity of Liver dysfunction. It indicates the estimated 90-day
+chances of survival for this patient. MELD-3.0 was created as an attempt to
+overcome some of the equity issues associated with the MELD and MELD-na
+scores. The calculation of MELD-3.0 requires 5 biomarkers, the
+patient's Creatinine, Bilirubin and International Normalized Ratio (INR),
+Albumin and Serum Sodium levels. The MELD-3.0 informs the estimated 90 day
+chances of survival of that patient and can be interpreted using this
+formula: 0.946^((0.17698 \* MELD 3.0) – 3.56) \* 100
 }
 \examples{
 #Example 1
 # Calculate the MELD-3.0 score for a female
 
-calcMELDThree(True, 2.3, 1.9, 2, 145)
+calcMELDThree('F', 2.3, 1.9, 2, 145, 2)
 
 }
 \references{
