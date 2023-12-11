@@ -22,7 +22,6 @@
 #' @export
 #' @import dplyr
 #' @import purrr
-#' @import devtools
 #' @import tidyr
 #'
 #' @examples
@@ -102,11 +101,6 @@ createMELDdf <- function(data) {
   if (!requireNamespace("tidyr", quietly = TRUE)) {
     install.packages("tidyr")
     library(tidyr)
-  }
-  # install devtools package if it is not already installed
-  if (!requireNamespace("devtools", quietly = TRUE)) {
-    install.packages("devtools")
-    library(devtools)
   }
 
   # Drop rows with na values from the data frame
