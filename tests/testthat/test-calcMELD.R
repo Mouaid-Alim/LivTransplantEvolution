@@ -10,8 +10,8 @@ context("Testing calcMELD function")
 # Test 1: Input Validation
 test_that("Input validation for dialysisTwoTimeWeek", {
   expect_error(calcMELD('InvalidValue', 1.3, 1.2, 1.1))
-  expect_error(calcMELD(TRUE, 1.3, 1.2, 1.1))  # Non-string TRUE
-  expect_error(calcMELD(FALSE, 1.3, 1.2, 1.1))  # Non-string FALSE
+  expect_error(calcMELD('True', 1.3, 1.2, 1.1))  #  different case TRUE
+  expect_error(calcMELD('False', 1.3, 1.2, 1.1))  # different case FALSE
 })
 
 test_that("Input validation for creatinine, bilirubin, and INR", {

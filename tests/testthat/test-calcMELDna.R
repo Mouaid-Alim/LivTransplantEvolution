@@ -10,8 +10,8 @@ context("Testing calcMELDna function")
 # Test 1: Input Validation
 test_that("Input validation for dialysisTwoTimeWeek", {
   expect_error(calcMELDna('InvalidValue', 1.3, 1.2, 1.1, 140))
-  expect_error(calcMELDna(TRUE, 1.3, 1.2, 1.1, 140))  # Non-string TRUE
-  expect_error(calcMELDna(FALSE, 1.3, 1.2, 1.1, 140))  # Non-string FALSE
+  expect_error(calcMELDna('True', 1.3, 1.2, 1.1, 140))  # Different case TRUE
+  expect_error(calcMELDna('False', 1.3, 1.2, 1.1, 140))  # Different case FALSE
 })
 
 test_that("Input validation for creatinine, bilirubin, inr, and sodium", {

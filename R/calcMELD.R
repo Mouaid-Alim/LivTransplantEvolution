@@ -67,9 +67,9 @@ calcMELD <- function(dialysisTwoTimeWeek = 'FALSE', creatinine = 1.3,
                      bilirubin = 1.2, inr = 1.1){
 
   # Input Checks
-  if (!(dialysisTwoTimeWeek %in% c('TRUE', 'FALSE') && typeof(dialysisTwoTimeWeek) == 'character')) {
+  if (!(dialysisTwoTimeWeek %in% c('TRUE', 'FALSE'))) {
     stop("The dialysisTwoTimeWeek value is not in c('TRUE', 'FALSE'). Make sure
-         you enter a string in c('TRUE', 'FALSE') for this variable and try
+         you enter a string or boolean in c('TRUE', 'FALSE') for this variable and try
          again")
   }
   if (!(typeof(creatinine) %in% "double")) {
