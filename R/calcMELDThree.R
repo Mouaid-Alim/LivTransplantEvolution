@@ -59,6 +59,11 @@ calcMELDThree <- function(sex = 'M', creatinine = 1.3,
                           albumin = 4){
 
   # Input Checks
+  if (!(sex %in% c('F', 'M') && typeof(sex) == 'character')) {
+    stop("The sex value is not in c('F', 'M'). Make sure
+         you enter a string in c('F', 'M') for this variable and try
+         again")
+  }
   if (!(typeof(creatinine) %in% "double")) {
     stop("The value for the creatinine parameter is not of type double. It needs
          to be of type double. Make sure you enter a value of type double for
@@ -88,28 +93,26 @@ calcMELDThree <- function(sex = 'M', creatinine = 1.3,
   # Boundary checks for the input values. If they fall outside the below
   # boundaries the values are just set to the closest boundary
   if (creatinine > 3) {
-    creatinine = 3
+    creatinine <- 3
   }
   if (creatinine < 1) {
-    creatinine = 1
+    creatinine <- 1
   }
   if (bilirubin < 1) {
-    bilirubin = 1
+    bilirubin <- 1
   }
   if (inr < 1) {
-    inr = 1
+    inr <- 1
   }
   if (sodium < 125) {
-    sodium = 125
-  }
-  if (sodium > 137) {
-    sodium = 137
+    sodium <- 125
+  }else if (sodium > 137) {
+    sodium <- 137
   }
   if (albumin < 1.5) {
-    albumin = 1.5
-  }
-  if (albumin > 3.5) {
-    albumin = 3.5
+    albumin <- 1.5
+  } else if (albumin > 3.5) {
+    albumin <- 3.5
   }
 
   # calculate offset based on whether the patien is male or female
@@ -136,8 +139,8 @@ calcMELDThree <- function(sex = 'M', creatinine = 1.3,
   meldThreeScore <- round(meldThreeScore, digits = 0)
 
   # Set boundary if MELD-3.0 score below 1
-  if (meldThreeScore <  1) {
-    meldThreeScore <- 1
+  if (meldThreeScore <  6) {
+    meldThreeScore <- 6
   }
 
   return(meldThreeScore)
