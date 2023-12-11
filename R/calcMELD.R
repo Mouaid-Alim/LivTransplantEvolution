@@ -63,11 +63,11 @@
 #'   November 14, 2023, from
 #'   https://optn.transplant.hrsa.gov/news/meld-serum-sodium-policy-changes/
 #'
-calcMELD <- function(dialyisTwoTimeWeek = 'FALSE', creatinine = 1.3,
+calcMELD <- function(dialysisTwoTimeWeek = 'FALSE', creatinine = 1.3,
                      bilirubin = 1.2, inr = 1.1){
 
   # Input Checks
-  if (!(dialyisTwoTimeWeek %in% c('TRUE', 'FALSE'))) {
+  if (!(dialysisTwoTimeWeek %in% c('TRUE', 'FALSE') && typeof(dialysisTwoTimeWeek) == 'character')) {
     stop("The dialysisTwoTimeWeek value is not in c('TRUE', 'FALSE'). Make sure
          you enter a string in c('TRUE', 'FALSE') for this variable and try
          again")
@@ -90,7 +90,7 @@ calcMELD <- function(dialyisTwoTimeWeek = 'FALSE', creatinine = 1.3,
 
   # If patient had dialysis in the past week set creatinine value to 4
   # automatically
-  if (dialyisTwoTimeWeek == 'TRUE') {
+  if (dialysisTwoTimeWeek == 'TRUE') {
     creatinine = 4
   }
 

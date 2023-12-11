@@ -73,11 +73,11 @@
 #' MELD serum sodium policy changes - OPTN. (n.d.). Hrsa.gov. Retrieved
 #'   November 14, 2023, from
 #'   https://optn.transplant.hrsa.gov/news/meld-serum-sodium-policy-changes/
-calcMELDna <- function(dialyisTwoTimeWeek = 'FALSE', creatinine = 1.3,
+calcMELDna <- function(dialysisTwoTimeWeek = 'FALSE', creatinine = 1.3,
                        bilirubin = 1.2, inr = 1.1, sodium = 140){
 
   # Input Checks
-  if (!(dialyisTwoTimeWeek %in% c('TRUE', 'FALSE'))) {
+  if (!(dialysisTwoTimeWeek %in% c('TRUE', 'FALSE') && typeof(dialysisTwoTimeWeek) == 'character')) {
     stop("The dialysisTwoTimeWeek value is not in c('TRUE', 'FALSE'). Make sure
          you enter a string in c('TRUE', 'FALSE') for this variable and try
          again")
@@ -100,10 +100,9 @@ calcMELDna <- function(dialyisTwoTimeWeek = 'FALSE', creatinine = 1.3,
 
   # Boundary checks for the input values. If they fall outside the below
   # boundaries the values are just set to the closest boundary
-  if (dialyisTwoTimeWeek == 'TRUE' || creatinine > 4) {
+  if (dialysisTwoTimeWeek == 'TRUE' || creatinine > 4) {
     creatinine = 4
-  }
-  if (creatinine < 1) {
+  } else if (creatinine < 1) {
     creatinine = 1
   }
   if (bilirubin < 1) {

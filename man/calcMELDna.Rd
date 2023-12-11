@@ -5,7 +5,7 @@
 \title{Calculate the Model for End-Stage Liver Disease-Sodium (MELD-na) risk score}
 \usage{
 calcMELDna(
-  dialyisTwoTimeWeek = "FALSE",
+  dialysisTwoTimeWeek = "FALSE",
   creatinine = 1.3,
   bilirubin = 1.2,
   inr = 1.1,
@@ -13,11 +13,6 @@ calcMELDna(
 )
 }
 \arguments{
-\item{dialyisTwoTimeWeek}{a boolean value indicating whether the patient has
-had dialysis at least twice in the past week. An indication of creatinine
-level and kidney function. Set Creatine value automatically to 4 if value is
-TRUE}
-
 \item{creatinine}{a numeric value of type 'double' for the creatinine
 biomarker which reflects kidney function, as kidney dysfunction is often
 associated with worsening Liver function. Unit: mg/dl}
@@ -34,6 +29,11 @@ blood clots and basically how thin your blood is. It is unitless}
 \item{sodium}{a numeric value of type 'double' for the serum sodium level.
 Another indicator of Kidney function. Sodium is only taken into account for
 the MELD-na calculation if the MELD is > 11. Unit: mEq/L}
+
+\item{dialyisTwoTimeWeek}{a boolean value indicating whether the patient has
+had dialysis at least twice in the past week. An indication of creatinine
+level and kidney function. Set Creatine value automatically to 4 if value is
+TRUE}
 }
 \value{
 meldNaScore the MELD-na score calculation based on the formula devised by

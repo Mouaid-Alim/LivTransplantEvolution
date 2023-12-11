@@ -5,18 +5,13 @@
 \title{Calculate the Model for End-Stage Liver Disease (MELD) risk score}
 \usage{
 calcMELD(
-  dialyisTwoTimeWeek = "FALSE",
+  dialysisTwoTimeWeek = "FALSE",
   creatinine = 1.3,
   bilirubin = 1.2,
   inr = 1.1
 )
 }
 \arguments{
-\item{dialyisTwoTimeWeek}{a boolean value indicating whether the patient has
-had dialysis at least twice in the past week. An indication of creatinine
-level and kidney function. Set Creatinine value automatically to 4 if value is
-TRUE}
-
 \item{creatinine}{a numeric value of type 'double' for the creatinine
 biomarker which reflects kidney function, as kidney dysfunction is often
 associated with worsening Liver function. Unit: mg/dl}
@@ -29,6 +24,11 @@ breakdown of old red blood cells. Elevated levels in the blood
 \item{inr}{a numeric value of type 'double' for International Normalized
 Ratio (INR). INR is a blood clotting test that is a measure how quickly your
 blood clots and basically how thin your blood is. It is unitless}
+
+\item{dialyisTwoTimeWeek}{a boolean value indicating whether the patient has
+had dialysis at least twice in the past week. An indication of creatinine
+level and kidney function. Set Creatinine value automatically to 4 if value is
+TRUE}
 }
 \value{
 meldScore the MELD score calculation based on the formula devised by
