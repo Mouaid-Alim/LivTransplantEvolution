@@ -1,0 +1,12 @@
+citHeader("To cite LivTransplantEvolution in publications use:")
+
+citEntry(entry = "Unpublished",
+  title        = "LivTransplantEvolution: Visualize MELD score trajectories",
+  author       = "Mouaid Alim",
+  note         = "Unpublished",
+  year         = "2023",
+
+  textVersion  =
+  paste("Alim, M. (2023) LivTransplantEvolution: Visualize MELD score trajectories
+        Unpublished. URL https://github.com/Mouaid-Alim/LivTransplantEvolution.")
+)
