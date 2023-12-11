@@ -23,7 +23,6 @@
 #' @import dplyr
 #' @import purrr
 #' @import devtools
-#' @import LivTransplantEvolution
 #' @import tidyr
 #'
 #' @examples
@@ -109,11 +108,11 @@ createMELDdf <- function(data) {
     install.packages("devtools")
     library(devtools)
   }
-  # install LivTransplantEvolution package if it is not already installed
-  if (!requireNamespace("LivTransplantEvolution", quietly = TRUE)) {
-    devtools::install_github("Mouaid-Alim/LivTransplantEvolution")
-    library("LivTransplantEvolution")
-  }
+  # load MELD, MELD-na and MELD-3.0 functions
+  source("./calcMELD.R")
+  source("./calcMELDna.R")
+  source("./calcMELDThree.R")
+
 
   # Drop rows with na values from the data frame
   data <- data %>% drop_na()
