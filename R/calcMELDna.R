@@ -41,7 +41,7 @@
 #' Kamath et al. and augmented by Biggins, S. W. et al.The MELD-na score
 #' calculation used here is based on the formula per pages 4-5 in the
 #' January 2016 OPTN policy.
-#' MELD-na score can be between 1 and 40 and any calculated value above or below
+#' MELD-na score can be between 6 and 40 and any calculated value above or below
 #' these boundary values are set as closest boundary value and returned.
 #' The MELD-na score informs the 90 day mortality of that patient and can be
 #' interpreted as follows: MELD-na is ≤9 = 1.9% Mortality,
@@ -97,6 +97,11 @@ calcMELDna <- function(dialysisTwoTimeWeek = 'FALSE', creatinine = 1.3,
          to be of type double. Make sure you enter a value of type double for
          this variable and try again")
   }
+  if (!(typeof(sodium) %in% "double")) {
+    stop("The value for the sodium parameter is not of type double. It needs
+         to be of type double. Make sure you enter a value of type double for
+         this variable and try again")
+  }
 
   # Boundary checks for the input values. If they fall outside the below
   # boundaries the values are just set to the closest boundary
@@ -132,9 +137,7 @@ calcMELDna <- function(dialysisTwoTimeWeek = 'FALSE', creatinine = 1.3,
 
   # Checking Boundary values for MELDna score and calculating MELD-na only if
   # the above MELD is above 11 as sodium is not impactful for MELD below 11
-  if (meldNaScore <  1) {
-    meldNaScore <- 1
-  } else if (meldNaScore > 11){
+  if (meldNaScore > 11){
     meldNaScore <- meldNaScore + 1.32*(137 - sodium) -
       (0.033*meldNaScore*(137 - sodium))
   }

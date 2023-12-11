@@ -40,7 +40,7 @@ meldNaScore the MELD-na score calculation based on the formula devised by
 Kamath et al. and augmented by Biggins, S. W. et al.The MELD-na score
 calculation used here is based on the formula per pages 4-5 in the
 January 2016 OPTN policy.
-MELD-na score can be between 1 and 40 and any calculated value above or below
+MELD-na score can be between 6 and 40 and any calculated value above or below
 these boundary values are set as closest boundary value and returned.
 The MELD-na score informs the 90 day mortality of that patient and can be
 interpreted as follows: MELD-na is ≤9 = 1.9\% Mortality,
