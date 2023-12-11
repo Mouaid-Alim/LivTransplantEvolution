@@ -107,9 +107,9 @@ the createMELDdf function and visualize the longitudinal MELD score
 trajectories for the MELD, MELD-na and MELD-3.0 risk scores together for
 every patient
 
-Package visual result:
+### Package Workflow:
 
-![](./inst/extdata/MELD_scores.png)
+![](./inst/extdata/Package_Workflow.png)
 
 ## Contributions
 
@@ -177,6 +177,8 @@ function adapted from paper by Kim, W. R. et al
 17. Wickham H (2016). *ggplot2: Elegant Graphics for Data Analysis.*
     Springer-Verlag New York. ISBN 978-3-319-24277-4,
     <https://ggplot2.tidyverse.org>.
+18. Silva, A. (2022) TestingPackage: An Example R Package For BCB410H.
+    Unpublished. URL <https://github.com/anjalisilva/TestingPackage>.”
 
 ## Acknowledgements
 
