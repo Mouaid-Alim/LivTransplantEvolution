@@ -1,33 +1,45 @@
-
-library(LivTransplantEvolution)
+library(testthat)
+library(readr)
 library(dplyr)
 
-test_that("prepareData returns correct processed data", {
-  # Create a temporary CSV file for testing
+# Load the prepareData function source file
+source("../../R/prepareData.R")
+
+context("Testing prepareData function")
+
+# Path to the sample CSV file
+sample_file_path <- "../../inst/extdata/updated_meld_patient_data.csv"
+
+# Test 1: Input File Path Validation
+test_that("Invalid file paths are handled", {
+  expect_error(prepareData("non_existent_file.csv"))
+})
+
+# Test 2: Data Column Validation
+test_that("Data missing required columns is handled", {
   temp_file <- tempfile(fileext = ".csv")
-  data.frame(Date = as.Date('2020-01-01'),
-             Sex = "F",
-             DialysisTwiceInPastWeek = TRUE,
-             Creatinine = 1.0,
-             INR = 1.2,
-             Total_Bilirubin = 0.5,
-             ALP = 100,
-             ALT = 50,
-             AST = 40,
-             Sodium = 140,
-             Albumin = 4.5) %>%
-    write.csv(temp_file, row.names = FALSE)
-
-  # Test the function
-  result <- prepareData(temp_file)
-
-  # Check if the function returns a data frame
-  expect_true(is.data.frame(result))
-
-  # Check if the correct columns are present
-  expected_cols <- c("Date", "Sex", "DialysisTwiceInPastWeek", "Creatinine", "INR", "Total_Bilirubin", "Sodium", "Albumin")
-  expect_true(all(expected_cols %in% names(result)))
-
-  # Clean up
+  data.frame(A = 1:5, B = 1:5) %>% write_csv(temp_file)
+  expect_error(prepareData(temp_file))
   unlink(temp_file)
+})
+
+# Test 3: Data Transformation Accuracy
+test_that("Data is correctly transformed", {
+  transformed_data <- prepareData(sample_file_path)
+  expected_columns <- c('Patient_ID', 'Date', 'Albumin', 'Bilirubin', 'INR',
+                        'Serum_Creatinine', 'Serum_Sodium', 'Gender',
+                        'Dialysis_In_Past_Week')
+  expect_true(all(expected_columns %in% colnames(transformed_data)))
+})
+
+# Test 4: Handling of Missing Values
+test_that("Rows with all NA values are removed", {
+  data <- prepareData(sample_file_path)
+  expect_false(any(rowSums(is.na(data)) == ncol(data)))
+})
+
+# Test 5: Return Type
+test_that("Function returns a dataframe", {
+  result <- prepareData(sample_file_path)
+  expect_true(is.data.frame(result))
 })
