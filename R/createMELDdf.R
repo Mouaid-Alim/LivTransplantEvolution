@@ -108,11 +108,6 @@ createMELDdf <- function(data) {
     install.packages("devtools")
     library(devtools)
   }
-  # load MELD, MELD-na and MELD-3.0 functions
-  source("./R/calcMELD.R")
-  source("./R/calcMELDna.R")
-  source("./R/calcMELDThree.R")
-
 
   # Drop rows with na values from the data frame
   data <- data %>% drop_na()
