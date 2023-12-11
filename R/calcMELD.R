@@ -91,31 +91,30 @@ calcMELD <- function(dialysisTwoTimeWeek = 'FALSE', creatinine = 1.3,
   # If patient had dialysis in the past week set creatinine value to 4
   # automatically
   if (dialysisTwoTimeWeek == 'TRUE') {
-    creatinine = 4
+    creatinine <- 4
   }
 
   # Calculate Creatinine portion of MELD calculation
-  creatValue = 0.957*log(creatinine)
+  creatValue <- 0.957*log(creatinine)
 
   # Calculate Bilirubin portion of MELD calculation
-  biliValue = 0.378*log(bilirubin)
+  biliValue <- 0.378*log(bilirubin)
 
   # Calculate INR portion of MELD calculation
-  inrValue = 1.120*log(inr)
+  inrValue <- 1.120*log(inr)
 
   # Calculate MELD score using above values
-  meldScore = (creatValue + biliValue + inrValue + 0.643)*10
+  meldScore <- (creatValue + biliValue + inrValue + 0.643)*10
 
   # Round MELD score to whole number
-  meldScore = round(meldScore, digits = 0)
+  meldScore <- round(meldScore, digits = 0)
 
   # MELD score is between 1 and 40 so if resulting value is outside these
   # boundaries, set MELD score to closest boundary value
   if (meldScore <  1) {
-    meldScore = 1
-  }
-  if (meldScore > 40) {
-    meldScore = 40
+    meldScore <- 1
+  }else if (meldScore > 40) {
+    meldScore <- 40
   }
 
   return(meldScore)
