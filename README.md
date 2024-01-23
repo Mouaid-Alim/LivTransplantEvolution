@@ -44,7 +44,7 @@ of the transplantation research going on in North America.
 The goal of `LivTransplantEvolution` is to be an analysis tool for
 clinicians using the SRTR database and conducting research on Liver
 transplantation who might not have the greatest familiarity with
-technical analysis and computation. What it will do take the Raw Liver
+technical analysis and computation. What it will do, is take the Raw Liver
 transplantation patient data from the stathiist_liin data file from the
 SRTR database. It will clean this data, to only keep the relevant
 biomarkers to calculate the various MELD scores. It will analyze the
